@@ -13,12 +13,12 @@ public class Filework {
     public static void main(String[] args) {
         Stack stack = new Stack();
         BufferedReader reader;
-        int i, j;
+        int i;
 
         //Читаем файл в одну строку
         String space = "";
         try {
-            reader = new BufferedReader(new FileReader("C:\\Users\\Азамат\\IdeaProjects\\untitled1\\src\\Blok Aleksandr.txt"));
+            reader = new BufferedReader(new FileReader("C:\\Users\\Азамат\\IdeaProjects\\AnalizeText\\src\\Чехов Антон. Рассказы. 1887 - royallib.ru.txt"));
             String line = reader.readLine().toLowerCase();
 
             while (line != null) {
@@ -38,7 +38,6 @@ public class Filework {
 
                 line = reader.readLine();
             }
-
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
