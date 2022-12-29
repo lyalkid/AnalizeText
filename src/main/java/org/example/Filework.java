@@ -3,11 +3,7 @@ package org.example;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Stack;
+import java.util.*;
 
 public class Filework {
     public static void main(String[] args) {
@@ -18,7 +14,7 @@ public class Filework {
         //Читаем файл в одну строку
         String space = "";
         try {
-            reader = new BufferedReader(new FileReader("C:\\Users\\Азамат\\IdeaProjects\\AnalizeText\\src\\Чехов Антон. Рассказы. 1887 - royallib.ru.txt"));
+            reader = new BufferedReader(new FileReader("C:\\Users\\Азамат\\IdeaProjects\\AnalizeText\\src\\Blok Aleksandr.txt"));
             String line = reader.readLine().toLowerCase();
 
             while (line != null) {
@@ -31,10 +27,9 @@ public class Filework {
                 }
 
                 String tneSameString = new String(charsOfLine);
-                //System.out.println(tneSameString);
 
                 space += tneSameString.toLowerCase() + " ";
-                // read next line
+
 
                 line = reader.readLine();
             }
@@ -58,7 +53,6 @@ public class Filework {
         //Копируем динамический массив в обычный
         String[] wordsOfList = new String[list.size()];
         arrCopy(wordsOfList, list);
-        //System.out.println(Arrays.toString(wordsOfList));
 
         for (String o : wordsOfList) {
             stack.push(o);
@@ -84,9 +78,6 @@ public class Filework {
             }
             last = String.valueOf(stack.pop());
         }
-        //System.out.println(k);
-        //System.out.println(a + "\n" + b );
-
         int[] aa = new int[a.size()];
         arrCopyToInt(aa,a);
 
@@ -96,9 +87,12 @@ public class Filework {
         bubbleSort(aa,bb);
         reverseInt(aa);
         reverse(bb);
-        //System.out.println(Arrays.toString(aa) + "\n" + Arrays.toString(bb));
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Сколько вывести слов?");
+        int n = scanner.nextInt();
         System.out.println("Уникальных слов: "+ " " + aa.length);
-        for (i = 0; i < 100; i++){
+        for (i = 0; i < n; i++){
             System.out.println(bb[i] + " " + aa[i]);
         }
     }
