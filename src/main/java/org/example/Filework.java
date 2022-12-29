@@ -50,9 +50,13 @@ public class Filework {
         }
         Collections.sort(list);
 
+
+
         //Копируем динамический массив в обычный
         String[] wordsOfList = new String[list.size()];
         arrCopy(wordsOfList, list);
+
+
 
         for (String o : wordsOfList) {
             stack.push(o);
@@ -87,12 +91,8 @@ public class Filework {
         bubbleSort(aa,bb);
         reverseInt(aa);
         reverse(bb);
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Сколько вывести слов?");
-        int n = scanner.nextInt();
-        System.out.println("Уникальных слов: "+ " " + aa.length);
-        for (i = 0; i < n; i++){
+        System.out.println("Уникальных слов: "+ aa.length);
+        for (i = 0; i < 100; i++){
             System.out.println(bb[i] + " " + aa[i]);
         }
     }
