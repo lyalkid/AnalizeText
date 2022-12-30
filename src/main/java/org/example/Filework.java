@@ -18,7 +18,7 @@ public class Filework {
             String line = reader.readLine().toLowerCase();
 
             while (line != null) {
-                //убираем лишние символы (не буквы)
+                //убираем лишние символы (не буквы и не пробелы)
                 char[] charsOfLine = line.toCharArray();
                 for (int k = 0; k < charsOfLine.length; k++) {
                     if (!Character.isAlphabetic(charsOfLine[k])) {
@@ -41,7 +41,7 @@ public class Filework {
         //Получаем массив слов
         String[] words = space.split(" ");
 
-        //формируем динамический массив без лишних пробелов
+        //заполняем динамический массив, чтобы избавиться от пробелов.
         ArrayList<String> list = new ArrayList<String>();
         for (i = 0; i < words.length; i++) {
             if (words[i] != "") {
@@ -52,19 +52,24 @@ public class Filework {
 
 
 
-        //Копируем динамический массив в обычный
+        //Копируем динамический массив в обычный.
         String[] wordsOfList = new String[list.size()];
         arrCopy(wordsOfList, list);
 
 
-
+        // заполняем стек словами из массива wordsOfList.
         for (String o : wordsOfList) {
             stack.push(o);
         }
+        // переворачиваем массив, чтобы он соответствовал стеку.
         reverse(wordsOfList);
+
+
         int counter = 1,k=0;
         ArrayList<Integer> a = new ArrayList<Integer>();
         ArrayList<String> b = new ArrayList<String>();
+
+        //для каждого уникального слова считаем количество повторов в тексте, заполняем эти данные в динамические массивы.
         String last = String.valueOf(stack.pop());
         while(!stack.empty()) {
 
@@ -82,13 +87,19 @@ public class Filework {
             }
             last = String.valueOf(stack.pop());
         }
+
+        //результаты записываем в два массива aa - массив, который показывает сколько раз каждое слово встречается в тексте
+        //bb - показывает каждое уникальное слово в отдельности без повторов.
         int[] aa = new int[a.size()];
         arrCopyToInt(aa,a);
 
         String[] bb = new String[b.size()];
         arrCopy(bb,b);
 
+        // сортируем два массива по количеству повторов в тексте.
         bubbleSort(aa,bb);
+
+        // разворачиваем массивы, чтобы вывести их по убыванию.
         reverseInt(aa);
         reverse(bb);
         System.out.println("Уникальных слов: "+ aa.length);
@@ -96,12 +107,22 @@ public class Filework {
             System.out.println(bb[i] + " " + aa[i]);
         }
     }
+
+    //метод для копирования динамического массива в массив фиксированной длины.
     public static void arrCopy(String[] a, ArrayList<String> b){
         for (int i = 0; i < b.size(); i++){
             a[i] = b.get(i);
         }
     }
 
+    //метод для копирования динамического массива в массив фиксированной длины.
+    public static void arrCopyToInt(int[] a, ArrayList<Integer> b){
+        for (int i = 0; i < b.size(); i++){
+            a[i] = b.get(i);
+        }
+    }
+
+    //метод для разворота целочисленного массива.
     public static void reverseInt(int[] a){
         int n = a.length;
 
@@ -111,6 +132,8 @@ public class Filework {
             a[i] = temp;
         }
     }
+
+    //метод для разворота массива строк.
     public static void reverse(String[] a){
         int n = a.length;
 
@@ -121,11 +144,8 @@ public class Filework {
         }
     }
 
-    public static void arrCopyToInt(int[] a, ArrayList<Integer> b){
-        for (int i = 0; i < b.size(); i++){
-            a[i] = b.get(i);
-        }
-    }
+    //Сортировка пузырьком для целочисленного массива и массива строк (для случая, когда каждому значению из первого
+    // массива соответствует значение массива из второго).
     public static void bubbleSort(int[] array, String[] b) {
         boolean isSorted = false;
         while (!isSorted) {
